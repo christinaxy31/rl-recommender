@@ -167,8 +167,8 @@ def run_experiment(agent_type="LinearUCB", steps=300):
     plt.show()
 
 
-#run_experiment(agent_type="LinearUCB")
+run_experiment(agent_type="LinearUCB")
 #run_experiment(agent_type="LinearThompson")
 #run_experiment(agent_type="EpsilonGreedy")
-# run_experiment(agent_type="Greedy")
-run_experiment(agent_type="Random")
+#run_experiment(agent_type="Greedy")
+# run_experiment(agent_type="Random")
