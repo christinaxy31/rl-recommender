@@ -18,12 +18,21 @@ env = tf_py_environment.TFPyEnvironment(
     RealMovieLensEmbeddingEnv(num_users=50, num_movies=50, embedding_dim=16)
 )
 
+initial_alpha = 1.0
+alpha_var = tf.Variable(initial_alpha, trainable=False, dtype=tf.float32)
+
+alpha_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
+    initial_learning_rate=initial_alpha,
+    decay_steps=100,
+    decay_rate=0.95
+)
+
 agent = lin_ucb_agent.LinearUCBAgent(
     time_step_spec=env.time_step_spec(),
     action_spec=env.action_spec(),
     variable_collection=None,
     accepts_per_arm_features=False,
-    alpha=1.0
+    alpha=alpha_var
 )
 agent.initialize()
 
